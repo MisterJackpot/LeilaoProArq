@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Jun 19 21:01:43 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instância a816c00e-016b-7230-665c-000006d76118
+no diretório de banco de dados C:\Users\16204005\Documents\LeilaoProArq\src\DataBase 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_191-b12
+user.dir=C:\Users\16204005\Documents\LeilaoProArq
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
