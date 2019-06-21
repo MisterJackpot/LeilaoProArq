@@ -34,6 +34,7 @@ public class Login extends HttpServlet {
 
         if(cliente != null) {
             req.setAttribute("cliente",cliente);
+            req.getSession().setAttribute("cliente",cliente);
             req.setAttribute("leiloes",leiloes);
             req.getRequestDispatcher("/view/PaginaInicial.jsp").include(req, resp);
         }else{
