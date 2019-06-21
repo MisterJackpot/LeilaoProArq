@@ -20,13 +20,13 @@
         <form action="/login" method="post" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="usuario" type="text" class="validate">
+                    <input id="usuario" type="text" name="usuario" class="validate">
                     <label for="usuario">Usuário</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="senha" type="password" class="validate">
+                    <input id="senha" type="password" name="senha" class="validate">
                     <label for="senha">Senha</label>
                 </div>
             </div>
