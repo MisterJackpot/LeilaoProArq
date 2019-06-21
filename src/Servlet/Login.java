@@ -1,6 +1,9 @@
 package Servlet;
 
+import Controller.LeilaoController;
 import Controller.LoginController;
+import Model.AbstractCliente;
+import Model.Leilao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
@@ -24,10 +28,14 @@ public class Login extends HttpServlet {
         System.out.println(req.toString());
 
         LoginController loginController = new LoginController();
-        boolean validation = loginController.logar(req.getParameter("usuario"),req.getParameter("senha"));
+        LeilaoController leilaoController = new LeilaoController();
+        AbstractCliente cliente = loginController.logar(req.getParameter("usuario"),req.getParameter("senha"));
+        ArrayList<Leilao>  leiloes = leilaoController.getLeiloesAtivos();
 
-        if(validation) {
-            req.getRequestDispatcher("/view/MenuGeral.jsp").include(req, resp);
+        if(cliente != null) {
+            req.setAttribute("cliente",cliente);
+            req.setAttribute("leiloes",leiloes);
+            req.getRequestDispatcher("/view/PaginaInicial.jsp").include(req, resp);
         }else{
             resp.sendError(1);
         }

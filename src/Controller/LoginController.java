@@ -1,14 +1,20 @@
 package Controller;
 
+import Model.AbstractCliente;
+import Model.Vendedor;
+
 public class LoginController {
 
     public LoginController(){
 
     }
 
-    public boolean logar(String usuario, String senha){
+    public AbstractCliente logar(String usuario, String senha){
         System.out.println(usuario + " - " + senha);
-        return true;
+
+        //Pegar do DAO e validar senha
+        Vendedor vendedor = new Vendedor(usuario,1);
+        return vendedor;
     }
 
 }
