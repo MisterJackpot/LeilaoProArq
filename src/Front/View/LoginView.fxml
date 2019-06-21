@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.View.LoginView">
+   <children>
+      <Label fx:id="title" alignment="CENTER" layoutX="218.0" layoutY="53.0" text="Sistema Leilao" textAlignment="CENTER" AnchorPane.leftAnchor="218.0" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="26.0" />
+         </font></Label>
+      <Label layoutX="108.0" layoutY="192.0" text="Label" />
+      <Label layoutX="218.0" layoutY="201.0" text="Senha" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="336.0" AnchorPane.topAnchor="201.0" />
+      <PasswordField layoutX="226.0" layoutY="223.0" />
+   </children>
+</AnchorPane>
