@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
         boolean validation = loginController.logar(req.getParameter("usuario"),req.getParameter("senha"));
 
         if(validation) {
-            req.getRequestDispatcher("/view/Teste.jsp").include(req, resp);
+            req.getRequestDispatcher("/view/MenuGeral.jsp").include(req, resp);
         }else{
             resp.sendError(1);
         }
