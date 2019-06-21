@@ -1,6 +1,7 @@
 package Front.View;
 
 
+import Front.Controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,13 +32,15 @@ public class LoginView extends Application {
     @FXML
     private Button entrar;
 
+    private LoginController loginController;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-
+        loginController = new LoginController();
         try {
             primaryStage.setTitle("Sistema Leilao");
             Parent root = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
@@ -53,6 +56,8 @@ public class LoginView extends Application {
 
     @FXML
     public void entrarAction(){
-        System.out.println("entrei");
+        if(loginController.login(user.getText(),password.getText())){
+            System.out.println("Sucesso");
+        }
     }
 }
