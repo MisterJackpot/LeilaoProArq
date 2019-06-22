@@ -1,7 +1,9 @@
 package Database;
 
-import javax.ejb.Singleton;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Connection {
 
