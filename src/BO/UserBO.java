@@ -1,6 +1,7 @@
 package BO;
 
 import DAO.UserDAO;
+import DTO.UsuarioDTO;
 
 public class UserBO {
 
@@ -12,15 +13,15 @@ public class UserBO {
 
     }
 
-    public void buscarUsuarioPorNickname(String nickname){
+    public UsuarioDTO buscarUsuarioPorNickname(String nickname){
 
-        this.userDAO.buscarUsuarioPorNickname(nickname);
+        return this.userDAO.buscarUsuarioPorNickname(nickname);
 
     }
 
-    public void buscarUsuarioPorId(int id){
+    public UsuarioDTO buscarUsuarioPorId(int id){
 
-        this.userDAO.buscarUsuarioPorId(id);
+        return this.userDAO.buscarUsuarioPorId(id);
 
     }
 

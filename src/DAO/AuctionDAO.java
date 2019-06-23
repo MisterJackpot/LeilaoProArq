@@ -6,6 +6,7 @@ import Database.SingletonConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class AuctionDAO {
 
@@ -64,6 +65,80 @@ public class AuctionDAO {
         }
 
         return leilaoDTO;
+
+    }
+
+    public ArrayList<LeilaoDTO> listarLeiloes() {
+
+        java.sql.Connection conn = SingletonConnection.getInstance().getConnection();
+        Statement stmt;
+        ArrayList<LeilaoDTO> leiloes = new ArrayList<>();
+
+        try {
+            stmt = conn.createStatement();
+            ResultSet results = stmt.executeQuery("SELECT * FROM AUCTIONS ");
+            while (results.next()) {
+                try {
+                    LeilaoDTO leilaoDTO = new LeilaoDTO();
+                    leilaoDTO.setId(results.getInt(1));
+                    leilaoDTO.setOwnerId(results.getInt(2));
+                    leilaoDTO.setDescricao(results.getString(3));
+                    leilaoDTO.setStatus(results.getString(4));
+                    leilaoDTO.setComprador(results.getInt(5));
+                    leiloes.add(leilaoDTO);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    results.close();
+                    stmt.close();
+                    return null;
+                }
+            }
+            results.close();
+            stmt.close();
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+            return null;
+        }
+
+        return leiloes;
+    }
+
+        public ArrayList<LeilaoDTO> listarLeiloesAtivos(){
+
+            java.sql.Connection conn = SingletonConnection.getInstance().getConnection();
+            Statement stmt;
+            ArrayList<LeilaoDTO> leiloes = new ArrayList<>();
+
+            try
+            {
+                stmt = conn.createStatement();
+                ResultSet results = stmt.executeQuery("SELECT * FROM AUCTIONS WHERE STATUS = 'A'");
+                while(results.next()) {
+                    try {
+                        LeilaoDTO leilaoDTO = new LeilaoDTO();
+                        leilaoDTO.setId(results.getInt(1));
+                        leilaoDTO.setOwnerId(results.getInt(2));
+                        leilaoDTO.setDescricao(results.getString(3));
+                        leilaoDTO.setStatus(results.getString(4));
+                        leilaoDTO.setComprador(results.getInt(5));
+                        leiloes.add(leilaoDTO);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        results.close();
+                        stmt.close();
+                        return null;
+                    }
+                }
+                results.close();
+                stmt.close();
+            }
+            catch (SQLException sqlExcept)
+            {
+                sqlExcept.printStackTrace();
+                return null;
+            }
+
+            return leiloes;
 
     }
 
