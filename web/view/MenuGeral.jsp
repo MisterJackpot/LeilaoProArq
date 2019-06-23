@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="../css/mystyle.css"  media="screen,projection"/>
-    <% AbstractCliente cliente = (AbstractCliente)request.getAttribute("cliente");%>
+    <% AbstractCliente cliente = (AbstractCliente)request.getSession().getAttribute("cliente");%>
 </head>
 <body>
 <nav>

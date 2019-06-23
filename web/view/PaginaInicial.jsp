@@ -18,7 +18,7 @@
         for (Leilao l: leilaos) {
 
         %>
-    <li class="collection-item"><div><%=l.getNome()%><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+    <li class="collection-item"><div><%=l.getNome()%><a href="leilao?nome=<%=l.getNome()%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
     <%}%>
 </ul>
 
