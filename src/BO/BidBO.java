@@ -2,6 +2,7 @@ package BO;
 
 import DAO.BidDAO;
 import DTO.LanceDTO;
+import DTO.LeilaoDTO;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class BidBO {
 
         LanceDTO lanceDTO = null;
         ArrayList<LanceDTO> lances = bidDAO.listarLancesDeLeilao(leilaoId);
+        if(lances == null) return null;
 
         for (LanceDTO l : lances){
             if (lanceDTO == null || lanceDTO.getValor() < l.getValor()) lanceDTO = l;
@@ -49,6 +51,9 @@ public class BidBO {
     public boolean darLance (int leilaoId, double valorLance, int bidOwnerId){
 
         try{
+            AuctionBO auctionBO = new AuctionBO();
+            LeilaoDTO leilaoDTO = auctionBO.buscarLeilaoPorId(leilaoId);
+            if (!leilaoDTO.getStatus().equalsIgnoreCase("A")) return false;
             LanceDTO maiorLance = buscarMaiorLanceDeLeilao(leilaoId);
             if (valorLance < maiorLance.getValor()) return false;
             else criarLance(leilaoId, bidOwnerId, valorLance);
