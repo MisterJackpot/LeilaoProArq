@@ -46,4 +46,20 @@ public class BidBO {
 
     }
 
+    public boolean darLance (int leilaoId, double valorLance, int bidOwnerId){
+
+        try{
+            LanceDTO maiorLance = buscarMaiorLanceDeLeilao(leilaoId);
+            if (valorLance < maiorLance.getValor()) return false;
+            else criarLance(leilaoId, bidOwnerId, valorLance);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+
+    }
+
 }

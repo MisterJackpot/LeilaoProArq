@@ -25,4 +25,18 @@ public class UserBO {
 
     }
 
+    public UsuarioDTO efetuarLogin(String nickname, String senha){
+
+        try{
+            UsuarioDTO usuarioDTO = userDAO.buscarUsuarioPorNickname(nickname);
+            if (usuarioDTO.getSenha() == senha) return usuarioDTO;
+            else return null;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 }
