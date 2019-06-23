@@ -27,4 +27,22 @@ public class AuctionBO {
 
     }
 
+    public void fecharLeilao(int id){
+
+        auctionDAO.fecharLeilao(id);
+
+    }
+
+    public void cancelarLeilao(int id){
+
+        auctionDAO.fecharLeilao(id);
+
+    }
+
+    public void definirComprador(int leilaoId, int compradorId){
+
+        auctionDAO.definirComprador(leilaoId, compradorId);
+
+    }
+
 }
