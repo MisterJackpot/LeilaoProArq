@@ -4,6 +4,7 @@ import BO.AuctionBO;
 import BO.BidBO;
 import DTO.LanceDTO;
 import DTO.LeilaoDTO;
+import DTO.UsuarioDTO;
 import Model.Leilao;
 
 import javax.servlet.ServletException;
@@ -40,6 +41,7 @@ public class LeilaoServlet extends HttpServlet {
 
         System.out.println(req.getQueryString());
         String values[] = req.getParameterValues("id");
+        UsuarioDTO usuarioDTO = (UsuarioDTO) req.getSession().getAttribute("cliente");
         if(values[0] == null){
             values[0] = req.getParameter("id");
         }
@@ -52,8 +54,10 @@ public class LeilaoServlet extends HttpServlet {
         LanceDTO lanceDTO = bidBO.buscarMaiorLanceDeLeilao(leilaoID);
         String lance = req.getParameter("lance");
         if(lance != null){
-            float lanceNumber = Float.parseFloat(lance);
-            if(lanceNumber > lanceDTO.getValor()){
+            double lanceNumber = Double.parseDouble(lance);
+            if(lanceDTO == null || lanceNumber > lanceDTO.getValor()){
+                boolean valid = bidBO.darLance(leilaoID,lanceNumber, usuarioDTO.getId());
+                lanceDTO = new LanceDTO();
                 lanceDTO.setValor(Double.parseDouble(lance));
             }
         }
