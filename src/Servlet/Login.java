@@ -31,13 +31,20 @@ public class Login extends HttpServlet {
         System.out.println(req.toString());
 
         UserBO userBO = new UserBO();
-        UsuarioDTO cliente = userBO.efetuarLogin(req.getParameter("usuario"),req.getParameter("senha"));
+        UsuarioDTO cliente;
+        if(req.getSession().getAttribute("usuario") == null) {
+             cliente = userBO.efetuarLogin(req.getParameter("usuario"), req.getParameter("senha"));
+        }else{
+             cliente = (UsuarioDTO) req.getSession().getAttribute("usuario");
+        }
         AuctionBO auctionBO = new AuctionBO();
         ArrayList<LeilaoDTO> leiloes = auctionBO.listarLeiloesAtivos();
+        ArrayList<LeilaoDTO> meusLeiloes = auctionBO.listarLeiloesPorDono(cliente.getId());
 
         if(cliente != null) {
             req.getSession().setAttribute("cliente",cliente);
             req.setAttribute("leiloes",leiloes);
+            req.setAttribute("meusLeiloes",meusLeiloes);
             req.getRequestDispatcher("/view/PaginaInicial.jsp").include(req, resp);
         }else{
             resp.sendError(1);

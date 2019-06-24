@@ -10,9 +10,9 @@ public class AuctionBO {
 
     private AuctionDAO auctionDAO = new AuctionDAO();
 
-    public void criarLeilao(int ownerId, String descricao){
+    public int criarLeilao(int ownerId, String descricao){
 
-        auctionDAO.criarLeilao(ownerId, descricao);
+        return auctionDAO.criarLeilao(ownerId, descricao);
 
     }
 

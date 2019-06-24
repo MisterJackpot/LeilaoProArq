@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 public class SingletonConnection {
 
     private static SingletonConnection ourInstance = new SingletonConnection();
-    private static String dbURL = "jdbc:derby:D:/PUC/LeilaoProArq/src/Database/LeilaoDB;create=true";
+    private static String dbURL = "jdbc:derby:C:/Users/Gabriel Loff/Projetos/LeilaoProArq/src/Database/LeilaoDB;create=true";
     private static java.sql.Connection conn = null;
 
     public static SingletonConnection getInstance() {

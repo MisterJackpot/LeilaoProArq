@@ -2,6 +2,7 @@ package Servlet;
 
 import BO.AuctionBO;
 import BO.BidBO;
+import BO.LeilaoFacade;
 import DTO.LanceDTO;
 import DTO.LeilaoDTO;
 import DTO.UsuarioDTO;
@@ -20,7 +21,6 @@ import java.util.Enumeration;
 @WebServlet(urlPatterns = "/leilao")
 public class LeilaoServlet extends HttpServlet {
 
-    private String s;
 
     public LeilaoServlet() {
         super();
@@ -29,7 +29,6 @@ public class LeilaoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("GET");
         req.setAttribute("serv","detalhe");
 
         this.doPost(req,resp);
@@ -39,34 +38,26 @@ public class LeilaoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        System.out.println(req.getParameter("serv"));
-        String values[] = req.getParameterValues("id");
         UsuarioDTO usuarioDTO = (UsuarioDTO) req.getSession().getAttribute("cliente");
-        if(values[0] == null){
-            values[0] = req.getParameter("id");
-        }
-        System.out.println(values[0]);
-        s = values[0];
-        int leilaoID = Integer.parseInt(s);
-        AuctionBO auctionBO = new AuctionBO();
-        BidBO bidBO = new BidBO();
-        LeilaoDTO leilaoDTO = auctionBO.buscarLeilaoPorId(leilaoID);
-        LanceDTO lanceDTO = bidBO.buscarMaiorLanceDeLeilao(leilaoID);
+
+        String value = req.getParameter("id");
         String lance = req.getParameter("lance");
+
+        if(value == null){
+            value = req.getParameter("id");
+        }
+        int idLeilao = Integer.parseInt(value);
+
+        LeilaoFacade leilaoFacade = new LeilaoFacade();
+        leilaoFacade.iniciarFacade(idLeilao);
+
         if(lance != null){
-            double lanceNumber = Double.parseDouble(lance);
-            if(lanceDTO == null || lanceNumber > lanceDTO.getValor()){
-                boolean valid = bidBO.darLance(leilaoID,lanceNumber, usuarioDTO.getId());
-                lanceDTO = new LanceDTO();
-                lanceDTO.setValor(Double.parseDouble(lance));
-            }
+            leilaoFacade.darLance(lance,usuarioDTO.getId());
         }
 
-        System.out.println("POST");
 
-        req.setAttribute("leilao",leilaoDTO);
-        req.setAttribute("lance",lanceDTO);
+        req.setAttribute("leilao",leilaoFacade.getLeilaoDTO());
+        req.setAttribute("lance",leilaoFacade.getLanceDTO());
         req.getRequestDispatcher("/view/LeilaoDetalhado.jsp").include(req,resp);
     }
 }

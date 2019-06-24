@@ -3,6 +3,7 @@ package DAO;
 import DTO.LeilaoDTO;
 import Database.SingletonConnection;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,21 +11,28 @@ import java.util.ArrayList;
 
 public class AuctionDAO {
 
-    public boolean criarLeilao(int ownerId, String descricao) {
+    public int criarLeilao(int ownerId, String descricao) {
 
         java.sql.Connection conn = SingletonConnection.getInstance().getConnection();
-        Statement stmt;
+        PreparedStatement stmt;
+        int id = -1;
 
         try {
-            stmt = conn.createStatement();
-            stmt.execute("INSERT INTO AUCTIONS (OWNER_ID, ITEM_DESCRIPTION, STATUS) VALUES (" + ownerId + ", '" + descricao + "', 'A')");
+            stmt = conn.prepareStatement("INSERT INTO AUCTIONS (OWNER_ID, ITEM_DESCRIPTION, STATUS) VALUES (? ,?, 'A')",Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1,ownerId);
+            stmt.setString(2,descricao);
+            stmt.execute();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if(rs.next()){
+                id = rs.getInt(1);
+            }
             stmt.close();
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
-            return false;
+            return -1;
         }
 
-        return true;
+        return id;
 
     }
 
