@@ -1,4 +1,6 @@
-<%@ page import="Model.Leilao" %><%--
+<%@ page import="Model.Leilao" %>
+<%@ page import="DTO.LeilaoDTO" %>
+<%@ page import="DTO.LanceDTO" %><%--
   Created by IntelliJ IDEA.
   User: Gabriel Loff
   Date: 22/06/2019
@@ -8,19 +10,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <jsp:include page="./MenuGeral.jsp" />
-<% Leilao leilao = (Leilao) request.getAttribute("leilao");%>
+<%
+    LeilaoDTO leilao = (LeilaoDTO) request.getAttribute("leilao");
+    LanceDTO lance = (LanceDTO) request.getAttribute("lance");
+    Double lanceV = 0.0;
+    if(lance!=null) lanceV = lance.getValor();
+
+%>
 
 <div class="row">
     <div class="col s12">
-        <h4 class="col s6"><%=leilao.getNome()%></h4>
+        <h4 class="col s6"><%=leilao.getDescricao()%></h4>
 
-        <h4 class="col s6">Ultimo Lance: <%=leilao.getUtlimoLance()%></h4>
+        <h4 class="col s6">Ultimo Lance: <%=lanceV.toString()%></h4>
     </div>
 </div>
 <div class="row">
     <form action="leilao" method="post" class="col s12">
         <div class="row">
-            <input type="hidden" name="nome" value="<%=leilao.getNome()%>">
+            <input type="hidden" name="id" value="<%=leilao.getId()%>">
             <div class="input-field col s6">
                 <input id="lance" name="lance" type="number" step="0.01" class="validate">
                 <label for="lance">Valor do Lance</label>

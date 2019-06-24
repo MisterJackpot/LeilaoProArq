@@ -1,5 +1,9 @@
 package Servlet;
 
+import BO.AuctionBO;
+import BO.BidBO;
+import DTO.LanceDTO;
+import DTO.LeilaoDTO;
 import Model.Leilao;
 
 import javax.servlet.ServletException;
@@ -35,25 +39,29 @@ public class LeilaoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         System.out.println(req.getQueryString());
-        String values[] = req.getParameterValues("nome");
+        String values[] = req.getParameterValues("id");
         if(values[0] == null){
-            values[0] = (String) req.getAttribute("nome");
+            values[0] = req.getParameter("id");
         }
         System.out.println(values[0]);
         s = values[0];
+        int leilaoID = Integer.parseInt(s);
+        AuctionBO auctionBO = new AuctionBO();
+        BidBO bidBO = new BidBO();
+        LeilaoDTO leilaoDTO = auctionBO.buscarLeilaoPorId(leilaoID);
+        LanceDTO lanceDTO = bidBO.buscarMaiorLanceDeLeilao(leilaoID);
         String lance = req.getParameter("lance");
-        Leilao l = new Leilao(s);
-        l.setUtlimoLance(250.5);
         if(lance != null){
             float lanceNumber = Float.parseFloat(lance);
-            if(lanceNumber > 250.5){
-                l.setUtlimoLance(lanceNumber);
+            if(lanceNumber > lanceDTO.getValor()){
+                lanceDTO.setValor(Double.parseDouble(lance));
             }
         }
 
         System.out.println("POST");
 
-        req.setAttribute("leilao",l);
+        req.setAttribute("leilao",leilaoDTO);
+        req.setAttribute("lance",lanceDTO);
         req.getRequestDispatcher("/view/LeilaoDetalhado.jsp").include(req,resp);
     }
 }

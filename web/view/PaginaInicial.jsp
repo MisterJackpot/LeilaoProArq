@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="Model.Leilao" %><%--
+<%@ page import="Model.Leilao" %>
+<%@ page import="DTO.LeilaoDTO" %><%--
   Created by IntelliJ IDEA.
   User: Gabriel Loff
   Date: 21/06/2019
@@ -14,11 +15,11 @@
 <ul class="collection with-header">
     <li class="collection-header"><h4>Leilões Ativos</h4></li>
     <%
-        ArrayList<Leilao> leilaos = (ArrayList) request.getAttribute("leiloes");
-        for (Leilao l: leilaos) {
+        ArrayList<LeilaoDTO> leilaos = (ArrayList) request.getAttribute("leiloes");
+        for (LeilaoDTO l: leilaos) {
 
         %>
-    <li class="collection-item"><div><%=l.getNome()%><a href="leilao?nome=<%=l.getNome()%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+    <li class="collection-item"><div><%=l.getDescricao()%><a href="leilao?id=<%=l.getId()%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
     <%}%>
 </ul>
 

@@ -1,8 +1,10 @@
 package Servlet;
 
+import BO.AuctionBO;
 import BO.UserBO;
 import Controller.LeilaoController;
 import Controller.LoginController;
+import DTO.LeilaoDTO;
 import DTO.UsuarioDTO;
 import Model.AbstractCliente;
 import Model.Leilao;
@@ -30,8 +32,8 @@ public class Login extends HttpServlet {
 
         UserBO userBO = new UserBO();
         UsuarioDTO cliente = userBO.efetuarLogin(req.getParameter("usuario"),req.getParameter("senha"));
-        LeilaoController leilaoController = new LeilaoController();
-        ArrayList<Leilao>  leiloes = leilaoController.getLeiloesAtivos();
+        AuctionBO auctionBO = new AuctionBO();
+        ArrayList<LeilaoDTO> leiloes = auctionBO.listarLeiloesAtivos();
 
         if(cliente != null) {
             req.getSession().setAttribute("cliente",cliente);
