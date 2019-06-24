@@ -1,22 +1,14 @@
 package Servlet;
 
-import BO.AuctionBO;
-import BO.BidBO;
 import BO.LeilaoFacade;
-import DTO.LanceDTO;
-import DTO.LeilaoDTO;
 import DTO.UsuarioDTO;
-import Model.Leilao;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
 
 @WebServlet(urlPatterns = "/leilao")
 public class LeilaoServlet extends HttpServlet {
@@ -52,7 +44,9 @@ public class LeilaoServlet extends HttpServlet {
         leilaoFacade.iniciarFacade(idLeilao);
 
         if(lance != null){
-            leilaoFacade.darLance(lance,usuarioDTO.getId());
+            if(!leilaoFacade.darLance(lance,usuarioDTO.getId())){
+                req.setAttribute("erro","ERRO");
+            }
         }
 
 

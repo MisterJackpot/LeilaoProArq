@@ -1,4 +1,3 @@
-<%@ page import="Model.AbstractCliente" %>
 <%@ page import="DTO.UsuarioDTO" %><%--
   Created by IntelliJ IDEA.
   User: Gabriel Loff
@@ -18,7 +17,10 @@
 <body>
 <nav>
     <div class="main nav-wrapper">
-        <a href="#" class="brand-logo">Sistema Leilões</a>
+        <a href="menu" class="brand-logo">Sistema Leilões</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="logout">Logout</a></li>
+        </ul>
     </div>
 </nav>
 <script type="text/javascript" src="../js/materialize.min.js"></script>

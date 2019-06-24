@@ -1,5 +1,4 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="Model.Leilao" %>
 <%@ page import="DTO.LeilaoDTO" %><%--
   Created by IntelliJ IDEA.
   User: Gabriel Loff
@@ -41,13 +40,9 @@
                             <input id="descricao" name="desc" type="text" class="validate">
                             <label for="descricao">Descrição</label>
                         </div>
-                        <div class="input-field col s6 m6">
-                            <input id="valor" type="number" step="0,01" class="validate">
-                            <label for="valor">Valor Inicial</label>
-                        </div>
                     </div>
                     <div class="row">
-                        <button class="btn waves-effect waves-light" type="submit" name="criarLeilao">Criar
+                        <button class="btn waves-effect waves-light col s6" type="submit" name="criarLeilao">Criar
                             <i class="material-icons right">send</i>
                         </button>
                     </div>

@@ -14,7 +14,10 @@
     LanceDTO lance = (LanceDTO) request.getAttribute("lance");
     Double lanceV = 0.0;
     if(lance!=null) lanceV = lance.getValor();
-
+    String d = "no";
+    if(leilao.getStatus().equalsIgnoreCase("F")){
+        d = "disabled";
+    }
 %>
 
 <div class="row">
@@ -30,11 +33,11 @@
             <input type="hidden" name="serv" value="adm">
             <input type="hidden" name="id" value="<%=leilao.getId()%>">
             <label>
-                <input name="op" type="radio" value="Encerrar" checked />
+                <input name="op" type="radio" value="Encerrar" disabled="<%=d%>"/>
                 <span>Encerrar</span>
             </label>
             <label>
-                <input name="op" type="radio" value="Cancelar"/>
+                <input name="op" type="radio" value="Cancelar" disabled="<%=d%>"/>
                 <span>Cancelar</span>
             </label>
             <div class="input-field col s6">

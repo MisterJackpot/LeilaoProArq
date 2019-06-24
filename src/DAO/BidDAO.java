@@ -103,7 +103,7 @@ public class BidDAO {
 
         try {
             stmt = conn.createStatement();
-            ResultSet results = stmt.executeQuery("SELECT * FROM BIDS WHERE ID = " + leilaoId);
+            ResultSet results = stmt.executeQuery("SELECT * FROM BIDS WHERE AUCTION_ID = " + leilaoId);
             while (results.next()) {
                 try {
                     LanceDTO lanceDTO = new LanceDTO();

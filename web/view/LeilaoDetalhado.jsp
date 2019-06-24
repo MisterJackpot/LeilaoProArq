@@ -1,4 +1,3 @@
-<%@ page import="Model.Leilao" %>
 <%@ page import="DTO.LeilaoDTO" %>
 <%@ page import="DTO.LanceDTO" %><%--
   Created by IntelliJ IDEA.
@@ -11,14 +10,19 @@
 <html>
 <jsp:include page="./MenuGeral.jsp" />
 <%
-    
+
     LeilaoDTO leilao = (LeilaoDTO) request.getAttribute("leilao");
     LanceDTO lance = (LanceDTO) request.getAttribute("lance");
     Double lanceV = 0.0;
     if(lance!=null) lanceV = lance.getValor();
-
+    String erro = (String) request.getAttribute("erro");
 %>
 
+<%if(erro != null){%>
+<script>
+    alert("Valor de Lance Invalido")
+</script>
+<%}%>
 <div class="row">
     <div class="col s12">
         <h4 class="col s6"><%=leilao.getDescricao()%></h4>
