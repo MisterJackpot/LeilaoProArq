@@ -1,4 +1,5 @@
-<%@ page import="Model.AbstractCliente" %><%--
+<%@ page import="Model.AbstractCliente" %>
+<%@ page import="DTO.UsuarioDTO" %><%--
   Created by IntelliJ IDEA.
   User: Gabriel Loff
   Date: 21/06/2019
@@ -12,12 +13,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="../css/mystyle.css"  media="screen,projection"/>
-    <% AbstractCliente cliente = (AbstractCliente)request.getSession().getAttribute("cliente");%>
+    <% UsuarioDTO cliente = (UsuarioDTO) request.getSession().getAttribute("cliente");%>
 </head>
 <body>
 <nav>
     <div class="main nav-wrapper">
-        <a href="#" class="brand-logo"><%= cliente.getNome()%></a>
+        <a href="#" class="brand-logo"><%= cliente.getNickname()%></a>
     </div>
 </nav>
 <script type="text/javascript" src="../js/materialize.min.js"></script>

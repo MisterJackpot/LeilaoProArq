@@ -29,7 +29,7 @@ public class UserBO {
 
         try{
             UsuarioDTO usuarioDTO = userDAO.buscarUsuarioPorNickname(nickname);
-            if (usuarioDTO.getSenha() == senha) return usuarioDTO;
+            if (usuarioDTO.getSenha().equals(senha)) return usuarioDTO;
             else return null;
         }
         catch (Exception e){

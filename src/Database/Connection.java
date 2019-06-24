@@ -1,13 +1,10 @@
 package Database;
 
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Connection {
 
-    private static String dbURL = "jdbc:derby:C:/Users/vitor/Documents/LeilaoProArq/src/Database/LeilaoDB;create=true";
+    private static String dbURL = "jdbc:derby:D:/PUC/LeilaoProArq/src/Database/LeilaoDB;create=true";
     private static java.sql.Connection conn = null;
 
 
@@ -21,6 +18,9 @@ public class Connection {
 
         try
         {
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            //Get a connection
+            conn = DriverManager.getConnection(dbURL);
             stmt = conn.createStatement();
             ResultSet results = stmt.executeQuery("select * from " + tableName);
             ResultSetMetaData rsmd = results.getMetaData();
@@ -46,6 +46,8 @@ public class Connection {
         catch (SQLException sqlExcept)
         {
             sqlExcept.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

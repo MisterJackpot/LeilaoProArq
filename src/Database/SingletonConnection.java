@@ -1,11 +1,14 @@
 package Database;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import java.sql.DriverManager;
 
 public class SingletonConnection {
 
     private static SingletonConnection ourInstance = new SingletonConnection();
-    private static String dbURL = "jdbc:derby:C:/Users/vitor/Documents/LeilaoProArq/src/Database/LeilaoDB;create=true";
+    private static String dbURL = "jdbc:derby:D:/PUC/LeilaoProArq/src/Database/LeilaoDB;create=true";
     private static java.sql.Connection conn = null;
 
     public static SingletonConnection getInstance() {
@@ -19,7 +22,7 @@ public class SingletonConnection {
 
         try
         {
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             //Get a connection
             conn = DriverManager.getConnection(dbURL);
         }

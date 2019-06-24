@@ -1,11 +1,12 @@
 package Servlet;
 
+import BO.UserBO;
 import Controller.LeilaoController;
 import Controller.LoginController;
+import DTO.UsuarioDTO;
 import Model.AbstractCliente;
 import Model.Leilao;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,13 +28,12 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println(req.toString());
 
-        LoginController loginController = new LoginController();
+        UserBO userBO = new UserBO();
+        UsuarioDTO cliente = userBO.efetuarLogin(req.getParameter("usuario"),req.getParameter("senha"));
         LeilaoController leilaoController = new LeilaoController();
-        AbstractCliente cliente = loginController.logar(req.getParameter("usuario"),req.getParameter("senha"));
         ArrayList<Leilao>  leiloes = leilaoController.getLeiloesAtivos();
 
         if(cliente != null) {
-            req.setAttribute("cliente",cliente);
             req.getSession().setAttribute("cliente",cliente);
             req.setAttribute("leiloes",leiloes);
             req.getRequestDispatcher("/view/PaginaInicial.jsp").include(req, resp);

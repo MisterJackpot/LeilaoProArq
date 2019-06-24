@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sun Jun 23 16:15:45 BRT 2019:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.15.1.3 - (1853019): instância a816c00e-016b-85c4-056f-000007400288
-no diretório de banco de dados C:\Users\vitor\Documents\LeilaoProArq\src\Database\LeilaoDB 
+Mon Jun 24 12:07:11 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instância a816c00e-016b-8a06-d17a-0000076b12e8
+no diretório de banco de dados D:\PUC\LeilaoProArq\src\Database\LeilaoDB 
 
 java.vendor=Oracle Corporation
 java.runtime.version=12.0.1+12
-user.dir=C:\Users\vitor\Documents\LeilaoProArq
-os.name=Windows 10
+user.dir=D:\PUC\LeilaoProArq
+os.name=Windows 7
 os.arch=amd64
-os.version=10.0
+os.version=6.1
 derby.system.home=null
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
