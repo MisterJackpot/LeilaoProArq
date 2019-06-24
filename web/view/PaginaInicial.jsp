@@ -13,15 +13,46 @@
 
 
 <ul class="collection with-header">
-    <li class="collection-header"><h4>Leilões Ativos</h4></li>
+    <li class="collection-header"><h5>Leilões Ativos</h5></li>
     <%
         ArrayList<LeilaoDTO> leilaos = (ArrayList) request.getAttribute("leiloes");
         for (LeilaoDTO l: leilaos) {
 
-        %>
+    %>
     <li class="collection-item"><div><%=l.getDescricao()%><a href="leilao?id=<%=l.getId()%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
     <%}%>
 </ul>
+<ul class="collection with-header">
+    <li class="collection-header"><h5>Seus Leiloes</h5></li>
+    <%%>
+    <%%>
+</ul>
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card grey lighten-3">
+            <div class="card-content">
+                <span class="card-title">Criar Leilão</span>
+                <form action="leilao" method="post">
+                    <div class="row">
+                        <div class="input-field col s6 m6">
+                            <input id="descricao" type="text" class="validate">
+                            <label for="descricao">Descrição</label>
+                        </div>
+                        <div class="input-field col s6 m6">
+                            <input id="valor" type="number" step="0,01" class="validate">
+                            <label for="valor">Valor Inicial</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Criar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

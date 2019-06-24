@@ -18,7 +18,7 @@
 <body>
 <nav>
     <div class="main nav-wrapper">
-        <a href="#" class="brand-logo"><%= cliente.getNickname()%></a>
+        <a href="#" class="brand-logo">Sistema Leilões</a>
     </div>
 </nav>
 <script type="text/javascript" src="../js/materialize.min.js"></script>
