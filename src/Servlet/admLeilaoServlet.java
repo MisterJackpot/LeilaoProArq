@@ -1,6 +1,7 @@
 package Servlet;
 
 import BO.LeilaoFacade;
+import BO.ListaFacade;
 import DTO.UsuarioDTO;
 
 import javax.servlet.ServletException;
@@ -25,8 +26,12 @@ public class admLeilaoServlet extends HttpServlet {
 
         boolean valid = leilaoFacade.administrarLeilao(op);
 
+        ListaFacade listaFacade = new ListaFacade(usuarioDTO.getId());
+
         if(valid){
-            req.getRequestDispatcher("Login").include(req,resp);
+            req.setAttribute("leiloes",listaFacade.getLeiloesAtivos());
+            req.setAttribute("meusLeiloes",listaFacade.getMeusLeiloes());
+            req.getRequestDispatcher("/view/PaginaInicial.jsp").include(req, resp);
         }
 
 

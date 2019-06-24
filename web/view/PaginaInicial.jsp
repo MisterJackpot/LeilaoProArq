@@ -19,7 +19,7 @@
         for (LeilaoDTO l: leilaos) {
 
     %>
-    <li class="collection-item"><div><%=l.getDescricao()%><a href="leilao?id=<%=l.getId()%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+    <li class="collection-item"><div><%=l.getDescricao()+" - "+l.getStatus()%><a href="leilao?id=<%=l.getId()%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
     <%}%>
 </ul>
 <ul class="collection with-header">
@@ -27,7 +27,7 @@
     <%
         ArrayList<LeilaoDTO> meusLeiloes = (ArrayList) request.getAttribute("meusLeiloes");
         for (LeilaoDTO l: meusLeiloes) {%>
-    <li class="collection-item"><div><%=l.getDescricao()%><a href="leilao?id=<%=l.getId()%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+    <li class="collection-item"><div><%=l.getDescricao()+" - "+l.getStatus()%><a href="criarLeilao?id=<%=l.getId()%>" class="secondary-content"><i class="material-icons">send</i></a></div></li>
     <%}%>
 </ul>
 <div class="row">

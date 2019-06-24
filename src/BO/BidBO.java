@@ -55,7 +55,7 @@ public class BidBO {
             LeilaoDTO leilaoDTO = auctionBO.buscarLeilaoPorId(leilaoId);
             if (!leilaoDTO.getStatus().equalsIgnoreCase("A")) return false;
             LanceDTO maiorLance = buscarMaiorLanceDeLeilao(leilaoId);
-            if (valorLance < maiorLance.getValor()) return false;
+            if (maiorLance!=null && valorLance < maiorLance.getValor()) return false;
             else criarLance(leilaoId, bidOwnerId, valorLance);
         }
         catch (Exception e){

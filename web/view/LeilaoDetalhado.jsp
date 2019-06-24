@@ -11,6 +11,7 @@
 <html>
 <jsp:include page="./MenuGeral.jsp" />
 <%
+    
     LeilaoDTO leilao = (LeilaoDTO) request.getAttribute("leilao");
     LanceDTO lance = (LanceDTO) request.getAttribute("lance");
     Double lanceV = 0.0;
