@@ -28,6 +28,7 @@
 <div class="row">
     <form action="leilao" method="post" class="col s12">
         <div class="row">
+            <input type="hidden" name="serv" value="lance">
             <input type="hidden" name="id" value="<%=leilao.getId()%>">
             <div class="input-field col s6">
                 <input id="lance" name="lance" type="number" step="0.01" class="validate">

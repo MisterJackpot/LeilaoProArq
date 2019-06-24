@@ -30,6 +30,7 @@ public class LeilaoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         System.out.println("GET");
+        req.setAttribute("serv","detalhe");
 
         this.doPost(req,resp);
 
@@ -39,7 +40,7 @@ public class LeilaoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println(req.getQueryString());
+        System.out.println(req.getParameter("serv"));
         String values[] = req.getParameterValues("id");
         UsuarioDTO usuarioDTO = (UsuarioDTO) req.getSession().getAttribute("cliente");
         if(values[0] == null){

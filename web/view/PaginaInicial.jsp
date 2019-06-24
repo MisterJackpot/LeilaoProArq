@@ -33,6 +33,7 @@
             <div class="card-content">
                 <span class="card-title">Criar Leilão</span>
                 <form action="leilao" method="post">
+                    <input type="hidden" name="serv" value="criar">
                     <div class="row">
                         <div class="input-field col s6 m6">
                             <input id="descricao" type="text" class="validate">
